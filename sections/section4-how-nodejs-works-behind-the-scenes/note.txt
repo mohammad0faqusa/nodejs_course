@@ -1,0 +1,137 @@
+node architecture 
+depends on : 
+    v 8 engine 
+        converts javascript code into machine code
+        use JS and c++ 
+    libuv 
+        open source library, with strong focus on async io 
+        let us access to computer system 
+        support the operations of node js :
+            event loop 
+            thread pool 
+        is completly written in c++ 
+
+    http parser , c-ares, openSSL, zlib
+
+//** process, threads , and thread pool 
+
+    process : 
+        instance of a program in execution on a computer 
+        single thread (sequence of instructions)
+            initialize program 
+            exeucte top level code 
+            require modules 
+            register event callbacks 
+            start event loop 
+                offloading to thread pool 
+    
+    thread pool ; 
+        additional 4 threads (or more )
+        offload work from the event loop 
+        handle every ("expensive task") :
+            file system api, 
+            cryptography
+            compression
+            dns lookup 
+    
+    event loop : 
+        all the applicaiton code that is inside a callback funciton (non - top level code)
+        node js is build around callback functions 
+        event driven architecture 
+            events are emmited 
+            event loops picks them up
+            callbacks are called 
+        event loop does orchistration 
+    
+    callbacks : 
+        expired timer 
+        i/o polling and callbacks 
+        setImmediate callback 
+            immediatly after i/o execution phase
+        close callbacks
+
+    process.nexttick() queue
+        we use it when we really need to execute callback right after the current loop phase
+
+
+don't block!
+    don't use sync versions of funcitons in fs, crypto, and zlib
+    don't perfom complex calcualtions
+    becareful with json in large objects
+    don't use complex regular expression 
+
+
+// ** EVENTS AND EVENT DRIVEN ARCHITECTURE 
+
+event emmiter -> event listener -> callback 
+observer pattern : 
+    event emmiter -> event listener
+
+
+
+// ** streams 
+    used to read/write data piece by piece wihtout completing the whole read or write operations    
+    therefore without keeping all the data in memory 
+    stream are instance of the eventEmitter class 
+    fundamental types 
+        readable 
+            stream from which we can read (consume ) data 
+            example : http request, fs read streams 
+            important events : data, end 
+            important functions : pipe() : plugging the streams together , read()
+        writable 
+            stream to which we can write data
+            example : http responses, fs write streams 
+            important events : drain, finish 
+            important funcitons : write() , end()
+        duplex
+            streams that are both readable and writable
+            example : net web socket 
+
+        transform
+            duplex streams that transfomr as it is written or read
+            example : zlib gzip creation 
+
+
+// ** how requiring modules really work ? 
+    each javascript file is treated as a seperate module 
+    node.js uses the commonJS module system: require(). exports or module.exports;
+    ES module system is used in browsers import/export 
+    there have been attemps to bring ES modules to node.js (.mjs)
+
+    require('test-modules');
+
+        resolving and loading -> wrapping -> execution -> returining exports -> cahcing 
+        
+        1) resolving and loading : 
+            core modules : require('http');
+            developer modules : require(./lib/controller');
+            3rd-party modlues (from npm) : require('express'); 
+
+            path resolving : how node decides which modules to load 
+            1- start with core modules 
+            2- if it begins with ./, or ../ , try to load developer module;
+            3- if no file found : try to find folder with index.js in it;
+            4- else : go to node-modules/ and try to find module there 
+
+        2) wrapping : 
+            (funciton(exports, require, module, __filename, __dirname){
+                // module code lives here 
+                require : function to require modules ;
+                module : references to the current module 
+                exprots : a reference to modlue . exports , used to export object from a module; 
+                __filename: absolute path of the current module's file 
+                __dirname : directory name of the current module 
+
+            })
+        
+        3) execution: 
+            require function returns exports of the required module 
+            module.exports is the returned object(important);
+            use modlue.exports to export one single variable , e.g one class or one function 
+                (module.exports = Calculator);
+            use exports to export multiple named varaibles 
+                (exports.add = (a, b)=> a + b) ; 
+                
+
+        
