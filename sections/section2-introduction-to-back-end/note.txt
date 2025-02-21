@@ -1,0 +1,69 @@
+req , res 
+client , server 
+
+
+1) url :
+    protocol : http, https 
+    domain name : www.google.com
+    resource : /maps 
+
+2) DNS : DNS lookup, serach the correct ip for the url address 
+    then the ip addresss of the server is returned to browser client 
+
+3) TCP/IP socket connection is opened between the client browser and the server 
+
+4) http request from the client
+
+
+httq request structure 
+    get /maps http/1.1 : start line : http method + request target + http version 
+    http request headers 
+        host : www.google.com
+        user-agent : mozilla 
+        accept-language : en-US 
+
+    <BODY>
+
+http response structure 
+    start line : http version + status code + status message 
+    http response headers 
+        the difference from request headers, is a back end developer like you can configure the header response 
+    <BODY>
+
+
+front end developer vs back end developer 
+    front end : 
+        build every thing related how the pages looks 
+        use basic technologies : html , css, java script, and modern front end developers uses frameworks like (react, angular ... etc)
+    back end : 
+        it is invisible to the client user
+        develop on server 
+        http server deals manage  data of computer 
+    
+        but if you want to develop higher than static, to dynamic level : 
+            an app running with http server and processed data 
+        use database 
+
+// ** static vs dynamic vs api 
+
+    static vs dynamic 
+        static files : html css javascript, running on browser without interacting with server 
+            javascript != dynamic 
+        
+        dynamic : 
+            database  -> get data -> build website  -> (html , css ,javascript) <-----> browser --> user client 
+                        template -> 
+        
+        api :
+            database -> get data -> JSON <-> browser -> consuming api (react, angular ... etc)  :
+                                                            browser -> build website -> final page 
+                                                            template -> 
+            can deal with many consumers : 
+                browser , native mobile app, native app
+            
+        
+    
+
+
+
+
