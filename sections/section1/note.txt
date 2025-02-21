@@ -1,0 +1,12 @@
+type node 
+
+press tab to view all global vairables 
+
+
+node js is single thread, so all users use same thread 
+
+callback hell in async node js
+    use promises or async/await 
+
+
+routing is implementing different actions to different urls 
