@@ -1,0 +1,54 @@
+API ; 
+    application programming interface: a piece of software that can be used by another piece of software, 
+    in order to allow applications to talk to each other
+
+but application can be other thing
+    node js fs or http apis ('node apis');
+    browsers dom javascript api 
+    with object-oriented programming, when exposing methods to the public, we're creating an API
+
+rest : representational state transfer 
+    making it easy to consume 
+    use api as smooth as possible 
+
+    1) seperate api into logical resources
+        resource : is object of something 
+
+    2) expose structured resource-based URLs
+        url : www.google.com/addpoint
+        endpoint : addpoint 
+
+    3) use http methods (verbs)
+        /addNewTour
+            post /tours 
+            create 
+        /getTour 
+            read
+            GET /tours 
+            get specific tour : 
+                get /tour/7 
+        /updateTour 
+            PUT /tours/7
+            PATCH /tours/7
+        /deleteTour
+            DELETE /tours/7
+    4) send data a JSON (usually)
+        all keys have to be string 
+        JSend : 
+            status 
+            data 
+
+    5) be stateless
+        all state is handled on the client. This means that each request 
+        must contain all the information necessary to process a certain request.
+        The server should not have to remember previous requests
+
+
+// ** middle ware 
+    it become after req, res object, and before response 
+    like : parsing body, logging, setting headers, router 
+    the arrange of middle ware stack is controlled by the arrange of what written in the code 
+    
+        
+
+
