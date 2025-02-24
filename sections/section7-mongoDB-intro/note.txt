@@ -1,0 +1,40 @@
+database > collections (tables) > documents (rows);
+
+mongoDB : is a document with the scalability and flexibility that you want 
+    with the querying and indexing that you need" 
+
+key mongo db features 
+    document based : no structured relations 
+    scalable : very easy to distribute 
+    flexible : you can change the fields all the time 
+    perfomant : embedded data modules, indexing, sharding, flexible documents, native duplicatoin, etc.
+    free and open-source, published under the SSPL License 
+
+document structure : 
+    {
+    "_id": "5c8a1d5b0190b214360dc057",
+    "name": "Jonas Schmedtmann",
+    "email": "admin@natours.io",
+    "role": "admin",
+    "active": true,
+    "photo": "user-1.jpg",
+    "password": "$2a$12$Q0grHjH9PXc6SxivC8m12.2mZJ9BbKcgFpwSG4Y1ZEII8HJVzWeyS"
+    }
+
+db.tours.find({$and: [{price : {$lt:500}}, {rating: {$gte: 4.5}}]})
+    operators : or, and , lt, lte , gt, gte     
+
+use natours // switch to natours db 
+
+db.users // create table of users 
+
+db.tours.updateOne({name: "mountin tour"}, {$set:{price: 500}})
+db.tours.updateMany({name: "mountin tour"}, {$set:{price: 500}})
+
+db.tours.replaceOne
+db.tours.replaceMany
+
+// how to delete documents 
+
+db.tours.deleteOne
+db.tours.deleteMany
