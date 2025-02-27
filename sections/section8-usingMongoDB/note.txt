@@ -1,0 +1,8 @@
+mvc architecture 
+
+    request -> router -> controller -> business logic -> view -> response 
+
+
+stringQuery = stringQuery.replace(/\b(gte|gt|lte|lt)\b/g, match=> `$${match}`);
+
+http://localhost:3000/api/v1/tours?sort=-price,ratingsAverage&fields=name,price,ratingsAverage,duration&page=1&limit=3
