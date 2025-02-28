@@ -1,0 +1,17 @@
+debuggin
+break points
+
+
+set middleware for other links 
+
+error handling 
+    operational errors 
+        generated from client 
+        express can handle it 
+
+    programming errors
+        more difficult to find 
+    
+how to handle all errors in one central middleware
+
+if we pass arg to next(), then express will always suppose it err argument

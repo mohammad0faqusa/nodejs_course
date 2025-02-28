@@ -5,6 +5,7 @@ class APIFeatures {
     }
 
     filter(){
+        console.log('fields')
         var queryObject = {...this.queryString} 
         const execludedFields = ['sort', 'page', 'limit', 'fields']
         execludedFields.forEach(el=> delete queryObject[el]);
@@ -19,6 +20,7 @@ class APIFeatures {
     }
 
     sort(){
+        console.log('sort')
         if (this.queryString.sort){
             const sortQuery = this.queryString.sort.split(',').join(' ')
             console.log(sortQuery)
@@ -30,6 +32,7 @@ class APIFeatures {
     }
 
     limitFields() {
+        console.log('limit fields')
         if(this.queryString.fields){
             const fields = this.queryString.fields.split(',').join(' ') ;
             this.query =  this.query.select(fields)
@@ -40,21 +43,16 @@ class APIFeatures {
     }
 
     pagination(){
+        console.log('pagination')
         console.log(this.queryString)
         const page = this.queryString.page * 1 || 1 ;
+        console.log('this is page : ', page)
         var limit = this.queryString.limit * 1 || 2 ;
         const skip  = (page - 1) * limit 
-        const remain = this.query.length - skip ; 
-        if (remain < limit )
-            limit = remain ; 
-        this.query = this.query.skip(skip).limit(limit); 
-
-        if (this.queryString.page){
-            const numTours =  Tour.countDocuments();
-            if(skip > numTours) throw new Error('this page does not exist')
-        }
+        this.query = this.query.skip(skip).limit(limit)
         return this; 
     }
+    
 }
 
 module.exports = APIFeatures; 
