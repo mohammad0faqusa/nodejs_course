@@ -1,0 +1,32 @@
+creating user 
+
+password management 
+    confirmation 
+    encryption 
+
+how json web token (jwt) authentication works 
+
+    client send post request /login 
+    server check for user && passowrd , create jwt, and sent it to user
+    client store jwt (cookie or localStorage)
+
+jwt structure : 
+    header 
+        {
+            alg : hs256,
+            typ : jwt 
+        }
+    payload 
+    {
+        id : user id 
+    }
+    varify segnature {
+        Hmacsha256(base64UrlEncode(header) +"," base64Url(payload), my-very-secret-secre )
+    }
+
+how signing and verifying works : 
+    header + playload = obj1 
+    secret = obj2 
+    signature = obj1 + obj2 
+    jwt = obj1 + signature 
+    jwt -> client -> verifying 

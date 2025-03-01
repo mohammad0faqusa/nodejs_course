@@ -3,6 +3,15 @@ const AppError = require('./../utils/appError')
 
 dotenv.config({path: './../config.env'})
 
+const handleTokenExpired = err => {
+  const message = 'Your token has been expired'; 
+  return new AppError(message, 400)
+
+}
+const handleJWTError = err => {
+  const message = `invalid jwt key`; 
+  return new AppError(message, 400); 
+}
 const handleCastErrorDB = err => {
   const message = `Invalid ${err.path}: ${err.value}.`
   return new AppError(message, 400); 
@@ -61,7 +70,9 @@ module.exports = (err, req, res, next) => {
   
       if (error.name === 'CastError') error = handleCastErrorDB(error);
       if (error.code === 11000) error = handleDuplicateField(error);
-      if (error.name === 'ValidationError') error = handleValidationError(error)
+      if (error.name === 'ValidationError') error = handleValidationError(error);
+      if (error.name === 'JsonWebTokenError') error = handleJWTError(error); 
+      if (error.name === 'TokenExpiredError') error = handleTokenExpired(error); 
       console.log(error); 
       sendErrorProd(error, res)
     }
