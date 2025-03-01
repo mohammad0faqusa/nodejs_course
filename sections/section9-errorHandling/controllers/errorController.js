@@ -13,6 +13,11 @@ const handleDuplicateField = err => {
   return new AppError(message, 400)
 }
 
+const handleValidationError  =  err => {
+  const message = err.message; 
+  return new AppError(message, 400)
+}
+
 const sendErrorDev = (err, res) => {
   res.status(err.statusCode).json({
     status: err.status,
@@ -42,7 +47,6 @@ const sendErrorProd = (err, res) => {
       message: 'something went very wrong!'
     })
   }
-  
 }
 
 module.exports = (err, req, res, next) => {
@@ -56,7 +60,8 @@ module.exports = (err, req, res, next) => {
       let error = JSON.parse(JSON.stringify(err));
   
       if (error.name === 'CastError') error = handleCastErrorDB(error);
-      if (error.code === 11000) error = handleDuplicateField(error); 
+      if (error.code === 11000) error = handleDuplicateField(error);
+      if (error.name === 'ValidationError') error = handleValidationError(error)
       console.log(error); 
       sendErrorProd(error, res)
     }

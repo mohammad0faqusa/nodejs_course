@@ -18,6 +18,7 @@ app.use(express.static(`${__dirname}/public`));
 
 app.use((req, res, next) => {
   // eslint-disable-next-line no-console
+  // console.log(x);  error handler express to error middleware 
   console.log('Hello from the middleware 👋');
   next();
 });
