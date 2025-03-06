@@ -1,0 +1,8 @@
+the most importatn steps : in to model the mongo db 
+
+data modelling 
+
+real word scenario -> unstrctured data -> structured data 
+
+example : 
+    

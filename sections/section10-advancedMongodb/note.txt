@@ -1,0 +1,39 @@
+data modeling 
+
+relationships : 
+    1:1 : movie -> name;
+
+    1:many :
+        movie -> award
+        1:few
+        1:many
+        1:TON (almost to enfinity)
+    
+    many:many 
+        actor:movie
+
+referencing vs embedding 
+
+    refferenced / normalized 
+        child referencing 
+
+    embedded / denormalized 
+
+type of referencing 
+    child 
+    parent 
+    two-way referencing 
+
+data sets we need : 
+    tours 
+    users
+    reviews
+    locations 
+    bookings
+
+    relations 
+        1:many
+            users:reviews, tours:reviews, tours:bookings, users:bookings
+        few:few
+            tours:locations(use embedded), tours:users(two ways referencing, or embedded)
+        
