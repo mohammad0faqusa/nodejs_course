@@ -24,5 +24,5 @@ exports.getTour = async (req, res) => {
     // 2) build template 
 
     // 3) Render template using data from 1) 
-    res.status(200).render('tour', {title: tour.title, tour})
+    res.status(200).render('tour', {title: tour.name, tour})
 }
