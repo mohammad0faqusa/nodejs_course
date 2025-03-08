@@ -6162,7 +6162,7 @@ var showAlert = exports.showAlert = /*#__PURE__*/function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.login = void 0;
+exports.logout = exports.login = void 0;
 var _axios = _interopRequireDefault(require("axios"));
 var _alerts = require("./alerts");
 function _interopRequireDefault(e) { return e && e.__esModule ? e : { default: e }; }
@@ -6197,6 +6197,25 @@ var login = exports.login = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
+var logout = exports.logout = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
+        case 0:
+          // alert('logged out ')
+          (0, _axios.default)('http://localhost:3000/logout', {
+            method: 'POST'
+          }).then(window.location.href = "/login");
+        case 1:
+        case "end":
+          return _context2.stop();
+      }
+    }, _callee2);
+  }));
+  return function logout() {
+    return _ref2.apply(this, arguments);
+  };
+}();
 },{"axios":"../../node_modules/axios/index.js","./alerts":"alerts.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -6205,7 +6224,8 @@ var _login = require("./login.js");
 // import '@babel/polyfill';
 
 var mapBox = document.getElementById('map');
-var loginForm = document.querySelector('.form');
+var loginForm = document.querySelector('.form--login');
+var logoutButton = document.querySelector('.logout');
 if (mapBox) {
   var locations = JSON.parse(mapBox.dataset.locations);
   (0, _mapbox.displayMap)(locations);
@@ -6218,6 +6238,9 @@ if (loginForm) {
     var password = document.getElementById('password').value;
     (0, _login.login)(email, password);
   });
+}
+if (logoutButton) {
+  logoutButton.addEventListener("click", _login.logout);
 }
 },{"./mapbox.js":"mapbox.js","./login.js":"login.js"}],"C:/Users/moham/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -6244,7 +6267,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57824" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51632" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

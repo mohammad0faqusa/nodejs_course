@@ -36,13 +36,7 @@ const createSendToken = (user, statusCode, res) => {
   });
 };
 
-exports.logout = (req, res) => {
-  res.cookie('jwt', 'loggedout' ,{
-    expires: new Date(Date.now() + 10 * 1000),
-    httpOnly: true
-  })
-  res.status(200).json({status: 'success'})
-}
+
 exports.signup = catchAsync(async (req, res, next) => {
   const newUser = await User.create({
     name: req.body.name,
@@ -53,6 +47,13 @@ exports.signup = catchAsync(async (req, res, next) => {
 
   createSendToken(newUser, 201, res);
 });
+
+exports.logout = catchAsync(async (req, res, next)=> {
+  res.cookie('jwt', 'logggedOut', {httpOnly: true});
+  res.status(201).json({
+    status: 'success'
+  })
+})
 
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
@@ -116,34 +117,40 @@ exports.protect = catchAsync(async (req, res, next) => {
   next();
 });
 
-exports.isLoggedIn = catchAsync(async (req, res, next) => {
+exports.isLoggedIn =async (req, res, next) => {
   // 1) Getting token and check of it's there
-  console.log(req.cookies.jwt); 
+
   if (req.cookies.jwt) { 
   
   // 2) Verification token
-  const decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);
-
-  // 3) Check if user still exists
-  console.log('this is current user ')
-  const currentUser = await User.findById(decoded.id);
-  if (!currentUser) {
+  try{
+    const decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET)
+      // 3) Check if user still exists
+    console.log('this is current user ')
+    const currentUser = await User.findById(decoded.id);
+    if (!currentUser) {
+      return next();
+    }
+    console.log(currentUser);
+    if (currentUser.changedPasswordAfter(decoded.iat)) {
+      return next();
+    }
+  
+    // THERE IS A LOGGED IN USER
+    res.locals.user = currentUser; 
     return next();
+  } catch(err){
+    return next(); 
   }
-  console.log(currentUser); 
+
+ 
   
   // 4) Check if user changed password after the token was issued
-  if (currentUser.changedPasswordAfter(decoded.iat)) {
-    return next();
-  }
 
-  // THERE IS A LOGGED IN USER
-  res.locals.user = currentUser; 
-  return next();
 }
 return next(); 
 
-});
+};
 
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {

@@ -21,7 +21,6 @@ const app = express();
 // Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 // set template engine , there are many template engines, and pug is between of them, most commonly use currently
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'))
@@ -29,6 +28,7 @@ app.set('views', path.join(__dirname, 'views'))
 // 1) GLOBAL MIDDLEWARES
 // Set security HTTP headers
 app.use(helmet());
+
 
 // Development logging
 if (process.env.NODE_ENV === 'development') {
@@ -45,7 +45,9 @@ app.use('/api', limiter);
 
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
+app.use(express.urlencoded({ extended: true, lmit: '10kb'}))
 app.use(cookieParser())
+
 
 //Test Middleware 
 app.use((req, res, next)=> {
@@ -79,6 +81,8 @@ app.use((req, res, next) => {
   // console.log(req.headers);
   next();
 });
+
+
 
 // 3) ROUTES
 app.use('/', viewRouter)

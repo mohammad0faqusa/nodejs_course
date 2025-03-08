@@ -18,3 +18,8 @@ export const login = async (email, password) => {
       });
 }
 
+export const logout = async ()=> {
+  // alert('logged out ')
+  axios('http://localhost:3000/logout',{method:'POST'}).then(window.location.href="/login")
+}
+
