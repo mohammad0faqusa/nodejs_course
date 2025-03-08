@@ -29,10 +29,16 @@ if(logoutButton) {
 if(updateForm) {
     updateForm.addEventListener('submit', function(ev){
         ev.preventDefault();
+        const form = new FormData(); 
         const email = document.getElementById('email').value 
         const name = document.getElementById('name').value
+        const photo = document.getElementById('photo').files[0]
+
+        form.append('name', name)
+        form.append('email', email)
+        form.append('photo', photo)
         console.log(email, name)
-        updateData({email, name}, 'data')
+        updateData(form, 'data')
     })
 }
 

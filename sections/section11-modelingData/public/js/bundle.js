@@ -6295,13 +6295,15 @@ if (logoutButton) {
 if (updateForm) {
   updateForm.addEventListener('submit', function (ev) {
     ev.preventDefault();
+    var form = new FormData();
     var email = document.getElementById('email').value;
     var name = document.getElementById('name').value;
+    var photo = document.getElementById('photo').files[0];
+    form.append('name', name);
+    form.append('email', email);
+    form.append('photo', photo);
     console.log(email, name);
-    (0, _updateSettings.updateData)({
-      email: email,
-      name: name
-    }, 'data');
+    (0, _updateSettings.updateData)(form, 'data');
   });
 }
 if (userPasswordForm) {
