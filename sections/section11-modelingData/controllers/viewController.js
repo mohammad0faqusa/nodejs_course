@@ -21,11 +21,9 @@ exports.getTour = async (req, res, next) => {
     path: 'reviews',
     fields: 'review rating user'
     })
-    console.log('request url : ', req.originalUrl)
     if(!tour)
         return next(new AppError('There is no tour with that name.', 404))
 
-    // console.log(tour); 
     // 2) build template 
     // 3) Render template using data from 1) 
     return res.status(200).render('tour', {tour})
@@ -44,7 +42,6 @@ exports.getAccount = (req, res) => {
 }
 
 exports.updateUserData = async (req, res, next) => {
-    console.log('Updating data', req.body)
     const updatedUser = await User.findByIdAndUpdate(req.user.id, {
         name: req.body.name,
         email: req.body.email 

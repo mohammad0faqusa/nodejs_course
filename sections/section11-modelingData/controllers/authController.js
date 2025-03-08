@@ -126,12 +126,10 @@ exports.isLoggedIn =async (req, res, next) => {
   try{
     const decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET)
       // 3) Check if user still exists
-    console.log('this is current user ')
     const currentUser = await User.findById(decoded.id);
     if (!currentUser) {
       return next();
     }
-    console.log(currentUser);
     if (currentUser.changedPasswordAfter(decoded.iat)) {
       return next();
     }
