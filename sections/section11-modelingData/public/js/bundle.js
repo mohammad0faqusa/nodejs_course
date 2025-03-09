@@ -6134,7 +6134,7 @@ function _asyncToGenerator(n) { return function () { var t = this, e = arguments
 // type is 'success' or 'error'
 var hideAlert = function hideAlert() {
   var el = document.querySelector('.alert');
-  console.log('child will be removed', el);
+  // console.log('child will be removed', el)
   if (el) el.parentElement.removeChild(el);
 };
 var showAlert = exports.showAlert = /*#__PURE__*/function () {
@@ -6175,8 +6175,8 @@ var login = exports.login = /*#__PURE__*/function () {
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          console.log(email, password);
-          _axios.default.post('http://localhost:3000/api/v1/users/login', {
+          // console.log(email,password); 
+          _axios.default.post('/api/v1/users/login', {
             email: email,
             password: password
           }).then(function async(response) {
@@ -6187,7 +6187,7 @@ var login = exports.login = /*#__PURE__*/function () {
             console.log(error);
             (0, _alerts.showAlert)('error', 'Failed to log in');
           });
-        case 2:
+        case 1:
         case "end":
           return _context.stop();
       }
@@ -6203,7 +6203,7 @@ var logout = exports.logout = /*#__PURE__*/function () {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
           // alert('logged out ')
-          (0, _axios.default)('http://localhost:3000/logout', {
+          (0, _axios.default)('/logout', {
             method: 'POST'
           }).then(window.location.href = "/login");
         case 1:
@@ -6236,7 +6236,7 @@ var updateData = exports.updateData = /*#__PURE__*/function () {
     return _regeneratorRuntime().wrap(function _callee$(_context) {
       while (1) switch (_context.prev = _context.next) {
         case 0:
-          url = type === 'password' ? 'http://localhost:3000/api/v1/users/updateMyPassword' : 'http://localhost:3000/api/v1/users/updateMe';
+          url = type === 'password' ? '/api/v1/users/updateMyPassword' : '/api/v1/users/updateMe';
           _context.next = 3;
           return (0, _axios.default)({
             method: 'PATCH',
@@ -6245,13 +6245,13 @@ var updateData = exports.updateData = /*#__PURE__*/function () {
           });
         case 3:
           res = _context.sent;
-          console.log('here is res.body : ', res.data);
+          // console.log('here is res.body : ', res.data)
           if (res.data.status === 'success') {
             (0, _alerts.showAlert)('success', "".concat(type.toUpperCase(), " updated successfully"));
           } else {
             (0, _alerts.showAlert)('error', 'failed to update ');
           }
-        case 6:
+        case 5:
         case "end":
           return _context.stop();
       }
@@ -6365,7 +6365,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51632" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51205" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

@@ -2,8 +2,8 @@ import axios from 'axios';
 import {showAlert} from './alerts'
 
 export const login = async (email, password) => {
-    console.log(email,password); 
-    axios.post('http://localhost:3000/api/v1/users/login', {
+    // console.log(email,password); 
+    axios.post('/api/v1/users/login', {
         email,
         password
       })
@@ -20,6 +20,6 @@ export const login = async (email, password) => {
 
 export const logout = async ()=> {
   // alert('logged out ')
-  axios('http://localhost:3000/logout',{method:'POST'}).then(window.location.href="/login")
+  axios('/logout',{method:'POST'}).then(window.location.href="/login")
 }
 

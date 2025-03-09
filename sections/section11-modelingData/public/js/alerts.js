@@ -1,7 +1,7 @@
 // type is 'success' or 'error'
 const hideAlert = ()=> {
     const el = document.querySelector('.alert');
-    console.log('child will be removed', el)
+    // console.log('child will be removed', el)
     if(el) el.parentElement.removeChild(el); 
 
 }

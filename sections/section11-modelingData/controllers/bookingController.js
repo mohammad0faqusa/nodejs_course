@@ -5,7 +5,7 @@ const Tour = require('./../models/tourModel');
 
 
 exports.getCheckoutSession = catchAsync(async(req, res, next) => {
-    console.log(req.params.tourID)
+    // console.log(req.params.tourID)
     // 1) get the currently booked tour 
     const tour = await Tour.findById(req.params.tourID)
 
