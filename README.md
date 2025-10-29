@@ -65,7 +65,7 @@ nodejs_course/
    ```bash
    git clone https://github.com/mohammad-faqusa/nodejs_course.git
    cd nodejs_course
-````
+```
 
 2. Install dependencies
 
