@@ -2,7 +2,7 @@
 
 > Learn to build **scalable, modern backend applications** using JavaScript, Node.js, Express, and MongoDB — from fundamentals to deployment.
 
-🎓 **Course:** [The Complete Node.js, Express, MongoDB Bootcamp — Udemy](https://www.udemy.com/course/nodejs-express-mongodb-bootcamp/)  
+🎓 **Course:** [The Complete Node.js, Express, MongoDB Bootcamp — Udemy](https://www.udemy.com/certificate/UC-e776ba76-aeee-4dd6-b72b-273d34836681/)
 📘 **Instructor:** Jonas Schmedtmann  
 
 ---
@@ -116,6 +116,4 @@ MongoDB is hosted on **MongoDB Atlas** for scalable cloud data management.
 Full-Stack Developer (Backend-Focused)
 📧 [mohammadfaqusa9@gmail.com](mailto:mohammadfaqusa9@gmail.com)
 🔗 [LinkedIn](https://www.linkedin.com/in/mohammad-faqusa/) • [GitHub](https://github.com/mohammad-faqusa)
-
----
 
