@@ -2,7 +2,7 @@
 
 > Learn to build **scalable, modern backend applications** using JavaScript, Node.js, Express, and MongoDB — from fundamentals to deployment.
 
-🎓 **Course:** [The Complete Node.js, Express, MongoDB Bootcamp — Udemy](https://www.udemy.com/certificate/UC-e776ba76-aeee-4dd6-b72b-273d34836681/)
+🎓 **Course:** [The Complete Node.js, Express, MongoDB Bootcamp — Udemy](https://www.udemy.com/certificate/UC-e776ba76-aeee-4dd6-b72b-273d34836681/)  
 📘 **Instructor:** Jonas Schmedtmann  
 
 ---
