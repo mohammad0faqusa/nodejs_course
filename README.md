@@ -1,10 +1,3 @@
-Perfect 👍 — since you already have a deployed demo and a GitHub repo, let’s make a professional **README.md** that shows your learning and project clearly.
-Here’s the complete, refined version for your repository:
-📁 **Repo:** [mohammad-faqusa/nodejs_course](https://github.com/mohammad-faqusa/nodejs_course)
-
----
-
-```markdown
 # 🚀 Node.js, Express, MongoDB & More — The Complete Bootcamp
 
 > Learn to build **scalable, modern backend applications** using JavaScript, Node.js, Express, and MongoDB — from fundamentals to deployment.
@@ -63,7 +56,7 @@ nodejs_course/
 ├── server.js          # Entry point
 └── config.env         # Environment variables
 
-````
+```
 
 ---
 
